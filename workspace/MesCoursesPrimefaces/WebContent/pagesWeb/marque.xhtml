@@ -1,0 +1,80 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+				xmlns:ui="http://java.sun.com/jsf/facelets"
+				xmlns:h="http://java.sun.com/jsf/html"
+				xmlns:f="http://java.sun.com/jsf/core"
+				xmlns:p="http://primefaces.org/ui"
+				template="/pagesWeb/template.xhtml">
+	<!-- ################################################################## Afficher toutes les marques ################################################################## -->
+	<ui:define name="affichage">
+		<h:form id="formAfficherMarque" style="padding:20px;">
+			<p:dataGrid value="#{marqueBean.listMarques}" var="m" layout="grid" columns="3" paginator="false">
+				<p:panel footer ="#{m.nomMarq}" style="text-align:center;">
+					<h:panelGrid columns="1" style="width:100%">
+						<p:graphicImage library="img" url="/resources/img/Marques/#{m.nomMarq}.png" alt="Image non disponible" />
+					</h:panelGrid>
+				</p:panel>
+			</p:dataGrid>
+		</h:form>
+	</ui:define>
+	<!-- ####################################################################### Ajouter une marque ###################################################################### -->
+	<ui:define name="ajout">
+		<h:form id="formAjouterMarque" style="padding:20px;">
+			<p:growl id="msgGrowl" showDetail="true" sticky="true" />
+			<p:panel header="Ajouter une nouvelle marque">
+				<p:outputLabel value="Marque" for="nomMarq" />
+				<p:inputText id="nomMarq" value="#{marqueBean.nomMarq}" required="true" />
+				<p:spacer width="50" />
+				<p:commandButton value="Ajouter" actionListener="#{marqueBean.ajouterMarque}" update="msgGrowl">
+					<p:confirm header="Confirmation" message="Etes-vous sur?" />
+				</p:commandButton>
+				<br/><br/>
+			</p:panel>
+			<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+				<p:commandButton value="Oui" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" update="msgGrowl" />
+				<p:commandButton value="Non" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" update="msgGrowl" />
+			</p:confirmDialog>
+		</h:form>	
+	</ui:define>
+	<!-- ######################################################################## Gerer une marque ####################################################################### -->
+	<ui:define name="gestion">
+		<h:form id="formGererMarque" style="padding:20px;">
+			<p:growl id="msgGrowl" showDetail="true" sticky="true" />
+			<p:contextMenu for="dataTableGererMarque" widgetVar="mMenu">
+				<p:menuitem value="Modifier" update=":formGererMarque:dataTableGererMarque" actionListener="#{marqueBean.modifierMarque}">
+					<p:confirm header="Confirmation" message="Etes-vous sur?" icon="ui-icon-alert" />
+				</p:menuitem>
+				<p:menuitem value="Supprimer" update=":formGererMarque:dataTableGererMarque" actionListener="#{marqueBean.supprimerMarque}">
+					<p:confirm header="Confirmation" message="Etes-vous sur?" icon="ui-icon-alert" />
+				</p:menuitem>
+			</p:contextMenu>
+			<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+				<p:commandButton value="Oui" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" update=":formGererMarque:msgGrowl" />
+				<p:commandButton value="Non" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" update=":formGererMarque:msgGrowl" />
+			</p:confirmDialog>
+			<p:dataTable id="dataTableGererMarque" var="lm" value="#{marqueBean.listMarques}" rowKey="#{lm.idMarq}" selection="#{marqueBean.marqSelect}"
+						 selectionMode="single" editable="true" editMode="cell" widgetVar="cellMarqList" resizableColumns="true" stickyHeader="true" style="width:50%;">	
+				<f:facet name="header">Gerer une marque</f:facet>
+				<br/>
+				<p:ajax event="sort" skipChildren="false" update=":formGererMarque:msgGrowl" />
+				<p:ajax event="cellEdit" listener="#{marqueBean.editerCellule}" update=":formGererMarque:msgGrowl" />
+				<p:column headerText="ID" sortBy="#{lm.idMarq}" style="width:30px">
+					<p:outputLabel value="#{lm.idMarq}" />
+				</p:column>
+				<p:column headerText="Marque" sortBy="#{lm.nomMarq}">
+					<p:cellEditor>
+						<f:facet name="output">
+							<p:outputLabel value="#{lm.nomMarq}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{lm.nomMarq}" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+			</p:dataTable>
+			<br/>
+			<p:commandButton value="Reset" immediate="true" ajax="false" update=":formGererMarque:msgGrowl">
+				<p:resetInput target="dataTableGererMarque" />
+			</p:commandButton>
+		</h:form>
+	</ui:define>
+</ui:composition>

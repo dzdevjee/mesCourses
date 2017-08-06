@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;MesCoursesWeb/WebContent/resources/img/LogoMag&apos; to &apos;Enseigne&apos;" description="Rename resource &apos;LogoMag&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="WebContent/resources/img/LogoMag" name="Enseigne" stamp="1472254285367" updateReferences="true"/>
+</session>

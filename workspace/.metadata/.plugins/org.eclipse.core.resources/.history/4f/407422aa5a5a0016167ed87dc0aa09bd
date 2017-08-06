@@ -1,0 +1,75 @@
+package com.lamine.presentation;
+
+import java.util.*;
+import javax.annotation.PostConstruct;
+import javax.faces.bean.*;
+import javax.faces.event.ActionEvent;
+import javax.faces.model.SelectItem;
+
+import com.lamine.dao.entite.Magasin;
+
+@ManagedBean(name="magasinBean")
+@RequestScoped
+public class MagasinBean {
+	private String nomMag;
+	private String adrMag;
+	private String typeMag;
+	private List<SelectItem> listTypeMag;
+
+	//Constructeur
+	public MagasinBean() {
+	}
+
+	@PostConstruct
+	public void initBean() {
+		nomMag = "Nouveau magasin";
+
+		listTypeMag = new ArrayList<>();
+		listTypeMag.add(new SelectItem(1, "Halal"));
+		listTypeMag.add(new SelectItem(2, "Hyper Marche"));
+	}
+
+	//Getters
+	public String getNomMag() {
+		return nomMag;
+	}
+	
+	public String getAdrMag() {
+		return adrMag;
+	}
+	
+	public String getTypeMag() {
+		return typeMag;
+	}
+
+	public List<SelectItem> getListTypeMag() {
+		return listTypeMag;
+	}
+
+	//Setters
+	public void setNomMag(String nomMag) {
+		this.nomMag = nomMag;
+	}
+	
+	public void setAdrMag(String adrMag) {
+		this.adrMag = adrMag;
+	}
+	
+	public void setTypeMag(String typeMag) {
+		this.typeMag = typeMag;
+	}
+	
+	public void setListTypeMag(List<SelectItem> listTypeMag) {
+		this.listTypeMag = listTypeMag;
+	}
+	
+	//Ajouter un magasin
+	public void ajouterMagasin(ActionEvent action) {
+		Magasin magasin = new Magasin();
+		if (nomMag != null) {
+			magasin.setNomMag(nomMag);
+		}
+		magasin.setAdrMag(adrMag);
+		
+	}
+}

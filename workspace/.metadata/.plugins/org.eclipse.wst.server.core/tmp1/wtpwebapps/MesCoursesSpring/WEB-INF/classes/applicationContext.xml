@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:s="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/security
+						http://www.springframework.org/schema/security/spring-security-3.2.xsd
+						http://www.springframework.org/schema/beans
+						http://www.springframework.org/schema/beans/spring-beans.xsd
+						http://www.springframework.org/schema/context
+						http://www.springframework.org/schema/context/spring-context-3.2.xsd
+						http://www.springframework.org/schema/tx
+						http://www.springframework.org/schema/tx/spring-tx-3.2.xsd">
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+        <property name="url" value="jdbc:mysql://localhost:2602/mescoursesspring?useSSL=false" />
+        <property name="username" value="root" />
+        <property name="password" value="khad" />
+	</bean>
+	<bean id="persistenceUnitManager" class="org.springframework.orm.jpa.persistenceunit.DefaultPersistenceUnitManager">
+		<property name="defaultDataSource" ref="dataSource" />
+		<property name="persistenceXmlLocations">
+			<list>
+				<value>classpath*:META-INF/persistence.xml</value>
+			</list>
+		</property>
+	</bean>
+	<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="persistenceUnitManager" ref="persistenceUnitManager" />
+		<property name="persistenceUnitName" value="UP_MesCourses"></property>
+	</bean>
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="entityManagerFactory" />
+	</bean>
+	<tx:annotation-driven transaction-manager="transactionManager" />
+	<context:annotation-config></context:annotation-config>
+	<bean id="categorieDao" class="com.lamine.mesCourses.dao.impl.CategorieDAOImpl" />
+	<bean id="categorieMetier" class="com.lamine.mesCourses.metier.impl.CategorieMetierImpl">
+		<property name="categorieDao" ref="categorieDao" />
+	</bean>
+	<bean id="enseigneDao" class="com.lamine.mesCourses.dao.impl.EnseigneDAOImpl" />
+	<bean id="enseigneMetier" class="com.lamine.mesCourses.metier.impl.EnseigneMetierImpl">
+		<property name="enseigneDao" ref="enseigneDao" />
+	</bean>
+	<bean id="magasinDao" class="com.lamine.mesCourses.dao.impl.MagasinDAOImpl" />
+	<bean id="magasinMetier" class="com.lamine.mesCourses.metier.impl.MagasinMetierImpl">
+		<property name="magasinDao" ref="magasinDao" />
+	</bean>
+	<bean id="marqueDao" class="com.lamine.mesCourses.dao.impl.MarqueDAOImpl" />
+	<bean id="marqueMetier" class="com.lamine.mesCourses.metier.impl.MarqueMetierImpl">
+		<property name="marqueDao" ref="marqueDao" />
+	</bean>
+	<bean id="natureDao" class="com.lamine.mesCourses.dao.impl.NatureDAOImpl" />
+	<bean id="natureMetier" class="com.lamine.mesCourses.metier.impl.NatureMetierImpl">
+		<property name="natureDao" ref="natureDao" />
+	</bean>
+	<bean id="produitDao" class="com.lamine.mesCourses.dao.impl.ProduitDAOImpl" />
+	<bean id="produitMetier" class="com.lamine.mesCourses.metier.impl.ProduitMetierImpl">
+		<property name="produitDao" ref="produitDao" />
+	</bean>
+	<bean id="typeMagasinDao" class="com.lamine.mesCourses.dao.impl.TypeMagasinDAOImpl" />
+	<bean id="typeMagasinMetier" class="com.lamine.mesCourses.metier.impl.TypeMagasinMetierImpl">
+		<property name="typeMagasinDao" ref="typeMagasinDao" />
+	</bean>
+	<bean id="typeProduitDao" class="com.lamine.mesCourses.dao.impl.TypeProduitDAOImpl" />
+	<bean id="typeProduitMetier" class="com.lamine.mesCourses.metier.impl.TypeProduitMetierImpl">
+		<property name="typeProduitDao" ref="typeProduitDao" />
+	</bean>
+	<bean id="utilisationDao" class="com.lamine.mesCourses.dao.impl.UtilisationDAOImpl" />
+	<bean id="utilisationMetier" class="com.lamine.mesCourses.metier.impl.UtilisationMetierImpl">
+		<property name="utilisationDao" ref="utilisationDao" />
+	</bean>
+	<s:http>
+		<s:intercept-url pattern="/produit/**"		access="ROLE_USR"/>
+		<s:intercept-url pattern="/categorie/**"	access="ROLE_ADM" />
+		<s:intercept-url pattern="/enseigne/**"		access="ROLE_ADM" />
+		<s:intercept-url pattern="/magasin/**"		access="ROLE_ADM" />
+		<s:intercept-url pattern="/marque/**"		access="ROLE_ADM" />
+		<s:intercept-url pattern="/nature/**"		access="ROLE_ADM" />
+		<s:intercept-url pattern="/typeMagasin/**"	access="ROLE_ADM" />
+		<s:intercept-url pattern="/typeProduit/**"	access="ROLE_ADM" />
+		<s:intercept-url pattern="/utilisation/**"	access="ROLE_ADM" />
+		
+		<s:form-login login-page="/connexion" default-target-url="/produit/index" authentication-failure-url="/connexion"/>
+		<s:logout logout-success-url="/deconnexion" invalidate-session="true"/>
+	</s:http>
+	<s:authentication-manager>
+		<s:authentication-provider>
+			<s:user-service>
+				<s:user name="lamineAdmin"	password="admin"	authorities="ROLE_ADM,ROLE_USR" />
+				<s:user name="lamineUser"	password="user"		authorities="ROLE_USR" />
+			</s:user-service>
+		</s:authentication-provider>
+	</s:authentication-manager>
+</beans>

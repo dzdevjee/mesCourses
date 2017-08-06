@@ -1,0 +1,83 @@
+package com.lamine.presentation;
+
+import javax.annotation.PostConstruct;
+import javax.faces.bean.*;
+
+@ManagedBean(name="produitBean")
+@RequestScoped
+public class ProduitBean {
+	private String nomProd;
+	private Integer qteProd;
+	private Integer qteNetProd;
+	private String uniteMesure;
+	private Double prixProd;
+	private Integer qteStk;
+	private String comProd;
+	
+	//Constructeur
+	public ProduitBean() {
+	}
+	
+	@PostConstruct
+	public void initBean() {
+		nomProd = "nomProd";
+	}
+
+	//Getters
+	public String getNomProd() {
+		return nomProd;
+	}
+
+	public Integer getQteProd() {
+		return qteProd;
+	}
+
+	public Integer getQteNetProd() {
+		return qteNetProd;
+	}
+
+	public String getUniteMesure() {
+		return uniteMesure;
+	}
+
+	public Double getPrixProd() {
+		return prixProd;
+	}
+
+	public Integer getQteStk() {
+		return qteStk;
+	}
+
+	public String getComProd() {
+		return comProd;
+	}
+	
+	//Setters
+	public void setNomProd(String nomProd) {
+		this.nomProd = nomProd;
+	}
+
+	public void setQteProd(Integer qteProd) {
+		this.qteProd = qteProd;
+	}
+
+	public void setQteNetProd(Integer qteNetProd) {
+		this.qteNetProd = qteNetProd;
+	}
+
+	public void setUniteMesure(String uniteMesure) {
+		this.uniteMesure = uniteMesure;
+	}
+
+	public void setPrixProd(Double prixProd) {
+		this.prixProd = prixProd;
+	}
+
+	public void setQteStk(Integer qteStk) {
+		this.qteStk = qteStk;
+	}
+
+	public void setComProd(String comProd) {
+		this.comProd = comProd;
+	}
+}

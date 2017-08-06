@@ -1,0 +1,156 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+				xmlns:ui="http://java.sun.com/jsf/facelets"
+				xmlns:h="http://java.sun.com/jsf/html"
+				xmlns:f="http://java.sun.com/jsf/core"
+				xmlns:p="http://primefaces.org/ui"
+				template="/pagesWeb/template.xhtml">
+	<!-- ################################################################# Afficher tous les magasins ################################################################### -->
+	<ui:define name="affichage">
+		<h:form id="formAfficherMagasin" style="padding:20px;">
+			<p:dataGrid value="#{magasinBean.listMagasins}" var="m" layout="grid" columns="3" paginator="false">
+				<p:panel footer="#{m.enseigne.nomEns}" style="text-align:center">
+					<h:panelGrid columns="1" style="width:100%">
+						<p:graphicImage library="img" url="/resources/img/Enseignes/#{m.enseigne.nomEns}.png" alt="Image non disponible"/>
+						<p:commandLink update=":formAfficherMagasin:magDetail" oncomplete="PF('magDialog').show()" title="Plus">
+							<h:outputText styleClass="ui-icon ui-icon-plus" style="margin:0 auto;" />
+							<f:setPropertyActionListener value="#{m}" target="#{magasinBean.magSelect}" />
+						</p:commandLink>
+					</h:panelGrid>
+				</p:panel>
+			</p:dataGrid>
+			<p:dialog header="Magasin Info" widgetVar="magDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+				<p:outputPanel id="magDetail" style="text-align:center;">
+					<p:panelGrid  columns="2" rendered="#{not empty magasinBean.magSelect}" columnClasses="label,value">
+						
+						<h:outputText value="ID" />
+						<h:outputText value="#{magasinBean.magSelect.idMag}" />
+
+						<h:outputText value="Adresse" />
+						<h:outputText value="#{magasinBean.magSelect.adrMag}" />
+						
+						<h:outputText value="Horaires" />
+						<h:outputText value="#{magasinBean.magSelect.horMag}" />
+						
+						<h:outputText value="Enseigne" />
+						<h:outputText value="#{magasinBean.magSelect.enseigne.nomEns}"/>
+
+						<h:outputText value="Type" />
+						<h:outputText value="#{magasinBean.magSelect.typeMagasin.nomTypeMag}"/>
+	
+					</p:panelGrid>
+				</p:outputPanel>
+			</p:dialog>
+		</h:form>
+	</ui:define>
+	<!-- ###################################################################### Ajouter un magasin ###################################################################### -->
+	<ui:define name="ajout">
+		<h:form id="formAjouterMagasin" style="padding:20px;">
+			<p:growl id="msgGrowl" showDetail="true" sticky="true" />
+			<p:panel header="Ajouter un nouveau magasin">
+				<p:outputLabel value="Adresse magasin" for="adrMag" />
+				<p:inputText id="adrMag" value="#{magasinBean.adrMag}" required="true" />
+				<br/>
+				<p:outputLabel value="Horaires magasin" for="horMag" />
+				<p:inputText id="horMag" value="#{magasinBean.horMag}" required="true" />
+				<br/>
+				<p:outputLabel value="Enseigne" for="ens" />
+				<p:selectOneMenu value="#{magasinBean.ens}" id="ens" required="true">
+					<f:selectItems value="#{magasinBean.listEns}" />				
+				</p:selectOneMenu>
+				<br/>
+				<p:outputLabel value="Type magasin" for="typeMag" />
+				<p:selectOneMenu value="#{magasinBean.typeMag}" id="typeMag" required="true">
+					<f:selectItems value="#{magasinBean.listTypesMag}" />				
+				</p:selectOneMenu>
+				<br/>
+				<p:commandButton value="Ajouter" actionListener="#{magasinBean.ajouterMagasin}" update="msgGrowl">
+					<p:confirm header="Confirmation" message="Etes-vous sur?" />
+				</p:commandButton>
+				<br/><br/>
+			</p:panel>
+			<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+				<p:commandButton value="Oui" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" update="msgGrowl" />
+				<p:commandButton value="Non" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" update="msgGrowl" />
+			</p:confirmDialog>
+		</h:form>	
+	</ui:define>
+	<!-- ####################################################################### Gerer un magasin ####################################################################### -->
+	<ui:define name="gestion">
+		<h:form id="formGererMagasin" style="padding:20px;">
+			<p:growl id="msgGrowl" showDetail="true" sticky="true" />
+			<p:contextMenu for="dataTableGererMagasin" widgetVar="mMenu">
+				<p:menuitem value="Modifier" update=":formGererMagasin:dataTableGererMagasin" actionListener="#{magasinBean.modifierMagasin}">
+					<p:confirm header="Confirmation" message="Etes-vous sur?" icon="ui-icon-alert" />
+				</p:menuitem>
+				<p:menuitem value="Supprimer" update=":formGererMagasin:dataTableGererMagasin" actionListener="#{magasinBean.supprimerMagasin}">
+					<p:confirm header="Confirmation" message="Etes-vous sur?" icon="ui-icon-alert" />
+				</p:menuitem>
+			</p:contextMenu>
+			<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+				<p:commandButton value="Oui" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" update=":formGererMagasin:msgGrowl" />
+				<p:commandButton value="Non" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" update=":formGererMagasin:msgGrowl" />
+			</p:confirmDialog>
+			<p:dataTable id="dataTableGererMagasin" var="lm" value="#{magasinBean.listMagasins}" rowKey="#{lm.idMag}" selection="#{magasinBean.magSelect}"
+						 selectionMode="single" editable="true" resizableColumns="true" stickyHeader="true">	
+				<f:facet name="header">Gerer un magasin</f:facet>
+				<br/>
+				<p:ajax event="sort" skipChildren="false" update=":formGererMagasin:msgGrowl" />
+				<p:ajax event="rowEdit" listener="#{magasinBean.onRowEdit}" update=":formGererMagasin:msgGrowl" />
+				<p:column headerText="ID" sortBy="#{lm.idMag}" style="width:30px">
+					<p:outputLabel value="#{lm.idMag}" />
+				</p:column>
+				<p:column headerText="Adresse magasin" sortBy="#{lm.adrMag}">
+					<p:cellEditor>
+						<f:facet name="output">
+							<p:outputLabel value="#{lm.adrMag}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{lm.adrMag}" style="width:100%" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+				<p:column headerText="Horaires magasin" sortBy="#{lm.horMag}" style="width:200px">
+					<p:cellEditor>
+						<f:facet name="output">
+							<p:outputLabel value="#{lm.horMag}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{lm.horMag}" style="width:100%" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+				<p:column headerText="Enseigne" sortBy="#{lm.enseigne.nomEns}" style="width:150px">
+					<p:cellEditor>
+						<f:facet name="output">
+							<p:outputLabel value="#{lm.enseigne.nomEns}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:selectOneMenu value="#{lm.enseigne.nomEns}" style="width:100%">
+								<f:selectItems value="#{magasinBean.listEns}" var="en" itemLabel="#{en.nomEns}" itemValue="#{en}" />
+							</p:selectOneMenu>
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+				<p:column headerText="Type magasin" sortBy="#{lm.typeMagasin.nomTypeMag}" style="width:150px">
+					<p:cellEditor>
+						<f:facet name="output">
+							<p:outputLabel value="#{lm.typeMagasin.nomTypeMag}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:selectOneMenu value="#{lm.typeMagasin.nomTypeMag}" style="width:100%">
+								<f:selectItems value="#{magasinBean.listTypesMag}" var="mg" itemLabel="#{mg.nomTypeMag}" itemValue="#{mg}" />
+							</p:selectOneMenu>
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+				<p:column style="width:20px">
+					<p:rowEditor />
+				</p:column>
+			</p:dataTable>
+			<br/>
+			<p:commandButton value="Reset" immediate="true" ajax="false" update=":formGererMagasin:msgGrowl">
+				<p:resetInput target="dataTableGererMagasin" />
+			</p:commandButton>
+		</h:form>
+	</ui:define>	
+</ui:composition>

@@ -1,0 +1,80 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+				xmlns:ui="http://java.sun.com/jsf/facelets"
+				xmlns:h="http://java.sun.com/jsf/html"
+				xmlns:f="http://java.sun.com/jsf/core"
+				xmlns:p="http://primefaces.org/ui"
+				template="/pagesWeb/template.xhtml">
+	<!-- ################################################################## Afficher toutes les natures ################################################################## -->
+	<ui:define name="affichage">
+		<h:form id="formAfficherNature" style="padding:20px;">
+			<p:dataGrid value="#{natureBean.listNatures}" var="n" layout="grid" columns="3" rows="18" paginator="false">
+				<p:panel footer ="#{n.nomNat}" style="text-align:center;">
+					<h:panelGrid columns="1" style="width:100%">
+						<p:graphicImage library="img" url="/resources/img/Natures/#{n.nomNat}.png" alt="Image non disponible" />
+					</h:panelGrid>
+				</p:panel>
+			</p:dataGrid>
+		</h:form>
+	</ui:define>
+	<!-- ####################################################################### Ajouter une nature ###################################################################### -->
+	<ui:define name="ajout">
+		<h:form id="formAjouterNature" style="padding:20px;">
+			<p:growl id="msgGrowl" showDetail="true" sticky="true" />
+			<p:panel header="Ajouter une nouvelle nature de produit">
+				<p:outputLabel value="Nature" for="nomNat" />
+				<p:inputText id="nomNat" value="#{natureBean.nomNat}" required="true" />
+				<p:spacer width="50" />
+				<p:commandButton value="Ajouter" actionListener="#{natureBean.ajouterNature}" update="msgGrowl">
+					<p:confirm header="Confirmation" message="Etes-vous sur?" />
+				</p:commandButton>
+				<br/><br/>
+			</p:panel>
+			<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+				<p:commandButton value="Oui" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" update="msgGrowl" />
+				<p:commandButton value="Non" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" update="msgGrowl" />
+			</p:confirmDialog>
+		</h:form>	
+	</ui:define>
+	<!-- ######################################################################## Gerer une nature ####################################################################### -->
+	<ui:define name="gestion">
+		<h:form id="formGererNature" style="padding:20px;">
+			<p:growl id="msgGrowl" showDetail="true" sticky="true" />
+			<p:contextMenu for="dataTableGererNature" widgetVar="nMenu">
+				<p:menuitem value="Modifier" update=":formGererNature:dataTableGererNature" actionListener="#{natureBean.modifierNature}">
+					<p:confirm header="Confirmation" message="Etes-vous sur?" icon="ui-icon-alert" />
+				</p:menuitem>
+				<p:menuitem value="Supprimer" update=":formGererNature:dataTableGererNature" actionListener="#{natureBean.supprimerNature}">
+					<p:confirm header="Confirmation" message="Etes-vous sur?" icon="ui-icon-alert" />
+				</p:menuitem>
+			</p:contextMenu>
+			<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+				<p:commandButton value="Oui" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" update=":formGererNature:msgGrowl" />
+				<p:commandButton value="Non" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" update=":formGererNature:msgGrowl" />
+			</p:confirmDialog>
+			<p:dataTable id="dataTableGererNature" var="ln" value="#{natureBean.listNatures}" rowKey="#{ln.idNat}" selection="#{natureBean.natSelect}"
+						 selectionMode="single" editable="true" editMode="cell" widgetVar="cellNatList" resizableColumns="true" stickyHeader="true" style="width:50%;">	
+				<f:facet name="header">Gerer une nature de produit</f:facet>
+				<br/>
+				<p:ajax event="sort" skipChildren="false" update=":formGererNature:msgGrowl" />
+				<p:ajax event="cellEdit" listener="#{natureBean.editerCellule}" update=":formGererNature:msgGrowl" />
+				<p:column headerText="ID" sortBy="#{ln.idNat}" style="width:30px">
+					<p:outputLabel value="#{ln.idNat}" />
+				</p:column>
+				<p:column headerText="Nature" sortBy="#{ln.nomNat}">
+					<p:cellEditor>
+						<f:facet name="output">
+							<p:outputLabel value="#{ln.nomNat}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{ln.nomNat}" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+			</p:dataTable>
+			<br/>
+			<p:commandButton value="Reset" immediate="true" ajax="false" update=":formGererNature:msgGrowl">
+				<p:resetInput target="dataTableGererNature" />
+			</p:commandButton>
+		</h:form>
+	</ui:define>
+</ui:composition>

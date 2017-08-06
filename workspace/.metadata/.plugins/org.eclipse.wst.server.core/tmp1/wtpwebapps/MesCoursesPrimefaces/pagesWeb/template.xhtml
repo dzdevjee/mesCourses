@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:h="http://xmlns.jcp.org/jsf/html"
+	  xmlns:f="http://xmlns.jcp.org/jsf/core"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+	  xmlns:p="http://primefaces.org/ui">
+	<h:head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+		<title>MesCourses</title>
+	</h:head>
+	<h:body>
+	<!-- ############################################################################# Menu ############################################################################# -->
+		<div id="menuBar">
+			<p:menubar>
+				<p:menuitem icon="ui-icon-home" url="http://localhost:8080/MesCoursesPrimefaces/faces/index.xhtml" />
+				
+				<p:submenu id="produit" label="Produit">
+					<p:menuitem value="Afficher la liste des produits" url="http://localhost:8080/MesCoursesPrimefaces/faces/pagesWeb/produit.xhtml" ajax="false" />
+					<p:separator />
+					<p:menuitem value="Ajouter un produit" url="http://localhost:8080/MesCoursesPrimefaces/faces/pagesWeb/produit.xhtml" ajax="false" />
+					<p:menuitem value="Rechercher un produit" url="http://localhost:8080/MesCoursesPrimefaces/faces/pagesWeb/produit.xhtml" ajax="false" />
+					<p:menuitem value="Gerer les produits" url="http://localhost:8080/MesCoursesPrimefaces/faces/pagesWeb/produit.xhtml" ajax="false" />
+				</p:submenu>
+	
+				<p:submenu id="enseigne" label="Enseigne">
+					<p:menuitem value="Afficher la liste des enseignes" url="http://localhost:8080/MesCoursesPrimefaces/faces/pagesWeb/enseigne.xhtml" ajax="false" />
+					<p:separator />
+					<p:menuitem value="Ajouter une enseigne" url="http://localhost:8080/MesCoursesPrimefaces/faces/pagesWeb/enseigne.xhtml" ajax="false" />
+					<p:menuitem value="Rechercher une enseigne" url="http://localhost:8080/MesCoursesPrimefaces/faces/pagesWeb/enseigne.xhtml" ajax="false" />
+					<p:menuitem value="Gerer une enseigne" url="http://localhost:8080/MesCoursesPrimefaces/faces/pagesWeb/enseigne.xhtml" ajax="false" />
+				</p:submenu>
+
+				<p:submenu id="magasin" label="Magasin">
+					<p:menuitem value="Afficher la liste des magasins" url="http://localhost:8080/MesCoursesPrimefaces/faces/pagesWeb/magasin.xhtml" ajax="false" />
+					<p:separator />
+					<p:menuitem value="Ajouter un magasin" url="http://localhost:8080/MesCoursesPrimefaces/faces/pagesWeb/magasin.xhtml" ajax="false" />
+					<p:menuitem value="Rechercher un magasin" url="http://localhost:8080/MesCoursesPrimefaces/faces/pagesWeb/magasin.xhtml" ajax="false" />
+					<p:menuitem value="Gerer un magasin" url="http://localhost:8080/MesCoursesPrimefaces/faces/pagesWeb/magasin.xhtml" ajax="false" />
+				</p:submenu>
+	
+				<p:submenu id="typeProduit" label="Type produit">
+					<p:menuitem value="Afficher la liste des types produit" url="http://localhost:8080/MesCoursesPrimefaces/faces/pagesWeb/typeProduit.xhtml" ajax="false" />
+					<p:separator />
+					<p:menuitem value="Ajouter un type produit" url="http://localhost:8080/MesCoursesPrimefaces/faces/pagesWeb/typeProduit.xhtml" ajax="false" />
+					<p:menuitem value="Rechercher un type produit" url="http://localhost:8080/MesCoursesPrimefaces/faces/pagesWeb/typeProduit.xhtml" ajax="false" />
+					<p:menuitem value="Gerer un type produit" url="http://localhost:8080/MesCoursesPrimefaces/faces/pagesWeb/typeProduit.xhtml" ajax="false" />
+				</p:submenu>
+				
+				<p:submenu id="typeMagasin" label="Type magasin">
+					<p:menuitem value="Afficher la liste des types magasin" url="http://localhost:8080/MesCoursesPrimefaces/faces/pagesWeb/typeMagasin.xhtml" ajax="false" />
+					<p:separator />
+					<p:menuitem value="Ajouter un type magasin" url="http://localhost:8080/MesCoursesPrimefaces/faces/pagesWeb/typeMagasin.xhtml" ajax="false" />
+					<p:menuitem value="Rechercher un type magasin" url="http://localhost:8080/MesCoursesPrimefaces/faces/pagesWeb/typeMagasin.xhtml" ajax="false" />
+					<p:menuitem value="Gerer un type magasin" url="http://localhost:8080/MesCoursesPrimefaces/faces/pagesWeb/typeMagasin.xhtml" ajax="false" />
+				</p:submenu>
+				
+				<p:submenu id="utilisation" label="Utilisation">
+					<p:menuitem value="Afficher la liste des utilisations" url="http://localhost:8080/MesCoursesPrimefaces/faces/pagesWeb/utilisation.xhtml" ajax="false" />
+					<p:separator />
+					<p:menuitem value="Ajouter une utilisation" url="http://localhost:8080/MesCoursesPrimefaces/faces/pagesWeb/utilisation.xhtml" ajax="false" />
+					<p:menuitem value="Rechercher une utilisation" url="http://localhost:8080/MesCoursesPrimefaces/faces/pagesWeb/utilisation.xhtml" ajax="false" />
+					<p:menuitem value="Gerer une utilisation" url="http://localhost:8080/MesCoursesPrimefaces/faces/pagesWeb/utilisation.xhtml" ajax="false" />
+				</p:submenu>
+				
+				<p:submenu id="categorie" label="Categorie">
+					<p:menuitem value="Afficher la liste des categories" url="http://localhost:8080/MesCoursesPrimefaces/faces/pagesWeb/categorie.xhtml" ajax="false" />
+					<p:separator />
+					<p:menuitem value="Ajouter une categorie" url="http://localhost:8080/MesCoursesPrimefaces/faces/pagesWeb/categorie.xhtml" ajax="false" />
+					<p:menuitem value="Rechercher une categorie" url="http://localhost:8080/MesCoursesPrimefaces/faces/pagesWeb/categorie.xhtml" ajax="false" />
+					<p:menuitem value="Gerer une categorie" url="http://localhost:8080/MesCoursesPrimefaces/faces/pagesWeb/categorie.xhtml" ajax="false" />
+				</p:submenu>
+				
+				<p:submenu id="nature" label="Nature">
+					<p:menuitem value="Afficher la liste des natures" url="http://localhost:8080/MesCoursesPrimefaces/faces/pagesWeb/nature.xhtml" ajax="false" />
+					<p:separator />
+					<p:menuitem value="Ajouter un nature" url="http://localhost:8080/MesCoursesPrimefaces/faces/pagesWeb/nature.xhtml" ajax="false" />
+					<p:menuitem value="Rechercher une nature" url="http://localhost:8080/MesCoursesPrimefaces/faces/pagesWeb/nature.xhtml" ajax="false" />
+					<p:menuitem value="Gerer une nature" url="http://localhost:8080/MesCoursesPrimefaces/faces/pagesWeb/nature.xhtml" ajax="false" />
+				</p:submenu>
+	
+				<p:submenu id="marque" label="Marque">
+					<p:menuitem value="Afficher la liste des marques" url="http://localhost:8080/MesCoursesPrimefaces/faces/pagesWeb/marque.xhtml" ajax="false" />
+					<p:separator />
+					<p:menuitem value="Ajouter un marque" url="http://localhost:8080/MesCoursesPrimefaces/faces/pagesWeb/marque.xhtml" ajax="false" />
+					<p:menuitem value="Rechercher une marque" url="http://localhost:8080/MesCoursesPrimefaces/faces/pagesWeb/marque.xhtml" ajax="false" />
+					<p:menuitem value="Gerer un marque" url="http://localhost:8080/MesCoursesPrimefaces/faces/pagesWeb/marque.xhtml" ajax="false" />
+				</p:submenu>
+				
+				<p:submenu id="choix" label="Choix" rendered="false">
+					<p:menuitem value="Afficher la liste des choix" url="http://localhost:8080/MesCoursesPrimefaces/faces/pagesWeb/choix.xhtml" ajax="false" />
+					<p:separator />
+					<p:menuitem value="Ajouter un choix" url="http://localhost:8080/MesCoursesPrimefaces/faces/pagesWeb/choix.xhtml" ajax="false" />
+					<p:menuitem value="Rechercher un choix" url="http://localhost:8080/MesCoursesPrimefaces/faces/pagesWeb/choix.xhtml" ajax="false" />
+					<p:menuitem value="Modifier un choix" url="http://localhost:8080/MesCoursesPrimefaces/faces/pagesWeb/choix.xhtml" ajax="false" />
+					<p:menuitem value="Supprimer un choix" url="http://localhost:8080/MesCoursesPrimefaces/faces/pagesWeb/choix.xhtml" ajax="false" disabled="true" />
+				</p:submenu>
+				
+				<f:facet name="options">
+					<p:inputText style="margin-right:10px" placeholder="Search"/>
+				</f:facet>
+			</p:menubar>
+		</div>
+	<!-- ########################################################################### Affichage ########################################################################## -->
+		<div style="padding: 2em;">
+			<ui:insert name="affichage" />
+		</div>
+	<!-- ############################################################################# Ajout ############################################################################ -->
+		<div style="padding: 2em;">
+			<ui:insert name="ajout" />
+		</div>
+	<!-- ############################################################################ Gestion ########################################################################### -->
+		<div style="padding: 2em;">
+			<ui:insert name="gestion" />
+		</div>
+	<!-- ######################################################################### basDePage ############################################################################ -->
+	</h:body>
+</html>

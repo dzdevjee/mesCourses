@@ -1,0 +1,80 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+				xmlns:ui="http://java.sun.com/jsf/facelets"
+				xmlns:h="http://java.sun.com/jsf/html"
+				xmlns:f="http://java.sun.com/jsf/core"
+				xmlns:p="http://primefaces.org/ui"
+				template="/pagesWeb/template.xhtml">
+	<!-- ############################################################### Afficher toutes les types produit ############################################################### -->
+	<ui:define name="affichage">
+		<h:form id="formAfficherTypeProduit" style="padding:20px;">
+			<p:dataGrid value="#{typeProduitBean.listTypesProduit}" var="tp" layout="grid" columns="3" rows="18" paginator="false">
+				<p:panel footer ="#{tp.nomTypeProd}" style="text-align:center;">
+					<h:panelGrid columns="1" style="width:100%">
+						<p:graphicImage library="img" url="/resources/img/Types produit/#{tp.nomTypeProd}.png" alt="Image non disponible" />
+					</h:panelGrid>
+				</p:panel>
+			</p:dataGrid>
+		</h:form>
+	</ui:define>
+	<!-- #################################################################### Ajouter un type magasin #################################################################### -->
+	<ui:define name="ajout">
+		<h:form id="formAjouterTypeProduit" style="padding:20px;">
+			<p:growl id="msgGrowl" showDetail="true" sticky="true" />
+			<p:panel header="Ajouter un nouveau type produit">
+				<p:outputLabel value="Type produit" for="nomTypeProd" />
+				<p:inputText id="nomTypeProd" value="#{typeProduitBean.nomTypeProd}" required="true" />
+				<p:spacer width="50" />
+				<p:commandButton value="Ajouter" actionListener="#{typeProduitBean.ajouterTypeProduit}" update="msgGrowl">
+					<p:confirm header="Confirmation" message="Etes-vous sur?" />
+				</p:commandButton>
+				<br/><br/>
+			</p:panel>
+			<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+				<p:commandButton value="Oui" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" update="msgGrowl" />
+				<p:commandButton value="Non" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" update="msgGrowl" />
+			</p:confirmDialog>
+		</h:form>	
+	</ui:define>
+	<!-- ##################################################################### Gerer un type produit ##################################################################### -->
+	<ui:define name="gestion">
+		<h:form id="formGererTypeProduit" style="padding:20px;">
+			<p:growl id="msgGrowl" showDetail="true" sticky="true" />
+			<p:contextMenu for="dataTableGererTypeProduit" widgetVar="tpMenu">
+				<p:menuitem value="Modifier" update=":formGererTypeProduit:dataTableGererTypeProduit" actionListener="#{typeProduitBean.modifierTypeProduit}">
+					<p:confirm header="Confirmation" message="Etes-vous sur?" icon="ui-icon-alert" />
+				</p:menuitem>
+				<p:menuitem value="Supprimer" update=":formGererTypeProduit:dataTableGererTypeProduit" actionListener="#{typeProduitBean.supprimerTypeProduit}">
+					<p:confirm header="Confirmation" message="Etes-vous sur?" icon="ui-icon-alert" />
+				</p:menuitem>
+			</p:contextMenu>
+			<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+				<p:commandButton value="Oui" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" update=":formGererTypeProduit:msgGrowl" />
+				<p:commandButton value="Non" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" update=":formGererTypeProduit:msgGrowl" />
+			</p:confirmDialog>
+			<p:dataTable id="dataTableGererTypeProduit" var="ltp" value="#{typeProduitBean.listTypesProduit}" rowKey="#{ltp.idTypeProd}" selection="#{typeProduitBean.typeProdSelect}"
+						 selectionMode="single" editable="true" editMode="cell" widgetVar="cellTypeProdList" resizableColumns="true" stickyHeader="true" style="width:50%;">	
+				<f:facet name="header">Gerer un type produit</f:facet>
+				<br/>
+				<p:ajax event="sort" skipChildren="false" update=":formGererTypeProduit:msgGrowl" />
+				<p:ajax event="cellEdit" listener="#{typeProduitBean.editerCellule}" update=":formGererTypeProduit:msgGrowl" />
+				<p:column headerText="ID" sortBy="#{ltp.idTypeProd}" style="width:30px">
+					<p:outputLabel value="#{ltp.idTypeProd}" />
+				</p:column>
+				<p:column headerText="Type produit" sortBy="#{ltp.nomTypeProd}">
+					<p:cellEditor>
+						<f:facet name="output">
+							<p:outputLabel value="#{ltp.nomTypeProd}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{ltp.nomTypeProd}" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+			</p:dataTable>
+			<br/>
+			<p:commandButton value="Reset" immediate="true" ajax="false" update=":formGererTypeProduit:msgGrowl">
+				<p:resetInput target="dataTableGererTypeProduit" />
+			</p:commandButton>
+		</h:form>
+	</ui:define>
+</ui:composition>

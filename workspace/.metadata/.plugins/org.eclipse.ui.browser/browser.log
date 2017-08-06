@@ -1,0 +1,67 @@
+
+août 03, 2016 15:19:24.82 NEW SESSION
+août 03, 2016 15:19:24.83 [Child 4100] WARNING: pipe error: 109: file c:/builds/moz2_slave/m-rel-w32-00000000000000000000/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 333
+août 03, 2016 15:19:24.83 [Child 4100] WARNING: pipe error: 109: file c:/builds/moz2_slave/m-rel-w32-00000000000000000000/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 333
+août 03, 2016 20:24:04.86 [NPAPI 3468] WARNING: pipe error: 109: file c:/builds/moz2_slave/m-rel-w32-00000000000000000000/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 343
+
+août 15, 2016 16:28:13.07 NEW SESSION
+août 15, 2016 16:28:13.07 [Child 2776] WARNING: pipe error: 109: file c:/builds/moz2_slave/m-rel-w32-00000000000000000000/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 343
+août 15, 2016 16:28:13.07 [Child 2776] WARNING: pipe error: 109: file c:/builds/moz2_slave/m-rel-w32-00000000000000000000/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 343
+août 15, 2016 16:29:51.85 [Child 6392] WARNING: pipe error: 109: file c:/builds/moz2_slave/m-rel-w32-00000000000000000000/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 343
+août 15, 2016 16:29:51.85 [Child 6392] WARNING: pipe error: 109: file c:/builds/moz2_slave/m-rel-w32-00000000000000000000/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 343
+août 15, 2016 16:34:48.69 [NPAPI 2152] WARNING: pipe error: 109: file c:/builds/moz2_slave/m-rel-w32-00000000000000000000/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 343
+août 15, 2016 16:34:48.71 [NPAPI 6788] WARNING: pipe error: 109: file c:/builds/moz2_slave/m-rel-w32-00000000000000000000/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 343
+
+déc. 04, 2016 03:01:02.32 NEW SESSION
+déc. 04, 2016 03:01:02.32 [Child 1036] WARNING: pipe error: 109: file c:/builds/moz2_slave/m-rel-w32-00000000000000000000/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+déc. 04, 2016 03:01:02.32 [Child 1036] WARNING: pipe error: 109: file c:/builds/moz2_slave/m-rel-w32-00000000000000000000/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+déc. 04, 2016 03:01:21.15 [Child 8044] WARNING: pipe error: 109: file c:/builds/moz2_slave/m-rel-w32-00000000000000000000/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+déc. 04, 2016 03:01:21.15 [Child 8044] WARNING: pipe error: 109: file c:/builds/moz2_slave/m-rel-w32-00000000000000000000/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+
+déc. 04, 2016 22:52:00.41 NEW SESSION
+déc. 04, 2016 22:52:00.41 [Child 5580] WARNING: pipe error: 109: file c:/builds/moz2_slave/m-rel-w32-00000000000000000000/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+déc. 05, 2016 24:17:44.90 [Child 4784] WARNING: pipe error: 109: file c:/builds/moz2_slave/m-rel-w32-00000000000000000000/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+déc. 05, 2016 24:17:44.91 [Child 4784] WARNING: pipe error: 109: file c:/builds/moz2_slave/m-rel-w32-00000000000000000000/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+déc. 05, 2016 24:19:53.89 [Child 2780] WARNING: pipe error: 109: file c:/builds/moz2_slave/m-rel-w32-00000000000000000000/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+déc. 05, 2016 24:39:27.09 [Child 5524] WARNING: pipe error: 109: file c:/builds/moz2_slave/m-rel-w32-00000000000000000000/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+déc. 05, 2016 24:39:27.09 [Child 5524] WARNING: pipe error: 109: file c:/builds/moz2_slave/m-rel-w32-00000000000000000000/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+déc. 05, 2016 24:39:53.39 [Child 6344] WARNING: pipe error: 109: file c:/builds/moz2_slave/m-rel-w32-00000000000000000000/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+déc. 05, 2016 24:39:53.39 [Child 6344] WARNING: pipe error: 109: file c:/builds/moz2_slave/m-rel-w32-00000000000000000000/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+déc. 05, 2016 24:40:10.95 *************************
+déc. 05, 2016 24:40:10.95 A coding exception was thrown and uncaught in a Task.
+déc. 05, 2016 24:40:10.95 
+déc. 05, 2016 24:40:10.95 Full message: TypeError: require is not a function
+déc. 05, 2016 24:40:10.95 Full stack: exports.Utils.yield@resource://gre/modules/addons/XPIProvider.jsm -> jar:file:///C:/Users/LamiDja/AppData/Roaming/Mozilla/Firefox/Profiles/cn04e3qc.default-1476368674451/extensions/%7Bd10d0bf8-f5b5-c8b4-a8b2-2b9879e08c5d%7D.xpi!/bootstrap.js -> jar:file:///C:/Users/LamiDja/AppData/Roaming/Mozilla/Firefox/Profiles/cn04e3qc.default-1476368674451/extensions/%7Bd10d0bf8-f5b5-c8b4-a8b2-2b9879e08c5d%7D.xpi!/lib/utils.js:334:19
+déc. 05, 2016 24:40:10.95 INIParser.prototype.process@resource://gre/modules/addons/XPIProvider.jsm -> jar:file:///C:/Users/LamiDja/AppData/Roaming/Mozilla/Firefox/Profiles/cn04e3qc.default-1476368674451/extensions/%7Bd10d0bf8-f5b5-c8b4-a8b2-2b9879e08c5d%7D.xpi!/bootstrap.js -> jar:file:///C:/Users/LamiDja/AppData/Roaming/Mozilla/Firefox/Profiles/cn04e3qc.default-1476368674451/extensions/%7Bd10d0bf8-f5b5-c8b4-a8b2-2b9879e08c5d%7D.xpi!/lib/filterStorage.js:798:14
+déc. 05, 2016 24:40:10.95 exports.IO.readFromFile/onProgress@resource://gre/modules/addons/XPIProvider.jsm -> jar:file:///C:/Users/LamiDja/AppData/Roaming/Mozilla/Firefox/Profiles/cn04e3qc.default-1476368674451/extensions/%7Bd10d0bf8-f5b5-c8b4-a8b2-2b9879e08c5d%7D.xpi!/bootstrap.js -> jar:file:///C:/Users/LamiDja/AppData/Roaming/Mozilla/Firefox/Profiles/cn04e3qc.default-1476368674451/extensions/%7Bd10d0bf8-f5b5-c8b4-a8b2-2b9879e08c5d%7D.xpi!/lib/io.js:98:29
+déc. 05, 2016 24:40:10.95 exports.IO.readFromFile/<@resource://gre/modules/addons/XPIProvider.jsm -> jar:file:///C:/Users/LamiDja/AppData/Roaming/Mozilla/Firefox/Profiles/cn04e3qc.default-1476368674451/extensions/%7Bd10d0bf8-f5b5-c8b4-a8b2-2b9879e08c5d%7D.xpi!/bootstrap.js -> jar:file:///C:/Users/LamiDja/AppData/Roaming/Mozilla/Firefox/Profiles/cn04e3qc.default-1476368674451/extensions/%7Bd10d0bf8-f5b5-c8b4-a8b2-2b9879e08c5d%7D.xpi!/lib/io.js:189:18
+déc. 05, 2016 24:40:10.95 TaskImpl_run@resource://gre/modules/Task.jsm:319:40
+déc. 05, 2016 24:40:10.95 
+déc. 05, 2016 24:40:10.95 *************************
+déc. 05, 2016 24:40:10.95 *************************
+déc. 05, 2016 24:40:10.95 A coding exception was thrown in a Promise rejection callback.
+déc. 05, 2016 24:40:10.95 See https://developer.mozilla.org/Mozilla/JavaScript_code_modules/Promise.jsm/Promise
+déc. 05, 2016 24:40:10.95 
+déc. 05, 2016 24:40:10.96 Full message: TypeError: Cu is null
+déc. 05, 2016 24:40:10.96 Full stack: exports.FilterStorage.loadFromDisk/readFile</<@resource://gre/modules/addons/XPIProvider.jsm -> jar:file:///C:/Users/LamiDja/AppData/Roaming/Mozilla/Firefox/Profiles/cn04e3qc.default-1476368674451/extensions/%7Bd10d0bf8-f5b5-c8b4-a8b2-2b9879e08c5d%7D.xpi!/bootstrap.js -> jar:file:///C:/Users/LamiDja/AppData/Roaming/Mozilla/Firefox/Profiles/cn04e3qc.default-1476368674451/extensions/%7Bd10d0bf8-f5b5-c8b4-a8b2-2b9879e08c5d%7D.xpi!/lib/filterStorage.js:380:11
+déc. 05, 2016 24:40:10.96 exports.IO.readFromFile/onError@resource://gre/modules/addons/XPIProvider.jsm -> jar:file:///C:/Users/LamiDja/AppData/Roaming/Mozilla/Firefox/Profiles/cn04e3qc.default-1476368674451/extensions/%7Bd10d0bf8-f5b5-c8b4-a8b2-2b9879e08c5d%7D.xpi!/bootstrap.js -> jar:file:///C:/Users/LamiDja/AppData/Roaming/Mozilla/Firefox/Profiles/cn04e3qc.default-1476368674451/extensions/%7Bd10d0bf8-f5b5-c8b4-a8b2-2b9879e08c5d%7D.xpi!/lib/io.js:156:9
+déc. 05, 2016 24:40:10.96 Handler.prototype.process@resource://gre/modules/Promise.jsm -> resource://gre/modules/Promise-backend.js:940:21
+déc. 05, 2016 24:40:10.96 this.PromiseWalker.walkerLoop@resource://gre/modules/Promise.jsm -> resource://gre/modules/Promise-backend.js:816:7
+déc. 05, 2016 24:40:10.96 this.PromiseWalker.scheduleWalkerLoop/<@resource://gre/modules/Promise.jsm -> resource://gre/modules/Promise-backend.js:750:11
+déc. 05, 2016 24:40:10.96 
+déc. 05, 2016 24:40:10.96 *************************
+déc. 05, 2016 24:41:06.52 [Child 3812] WARNING: pipe error: 109: file c:/builds/moz2_slave/m-rel-w32-00000000000000000000/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+déc. 05, 2016 24:49:12.45 [Child 6276] WARNING: pipe error: 109: file c:/builds/moz2_slave/m-rel-w32-00000000000000000000/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+déc. 05, 2016 01:49:54.49 [Child 3092] WARNING: pipe error: 109: file c:/builds/moz2_slave/m-rel-w32-00000000000000000000/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+déc. 05, 2016 01:49:54.49 [Child 3092] WARNING: pipe error: 109: file c:/builds/moz2_slave/m-rel-w32-00000000000000000000/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+déc. 05, 2016 01:56:13.71 [Child 6888] WARNING: pipe error: 109: file c:/builds/moz2_slave/m-rel-w32-00000000000000000000/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+déc. 05, 2016 01:56:51.90 [Child 1044] WARNING: pipe error: 109: file c:/builds/moz2_slave/m-rel-w32-00000000000000000000/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+déc. 05, 2016 01:59:58.10 [Child 4040] WARNING: pipe error: 109: file c:/builds/moz2_slave/m-rel-w32-00000000000000000000/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+
+déc. 10, 2016 23:43:32.37 NEW SESSION
+déc. 10, 2016 23:43:32.37 [Child 5476] WARNING: pipe error: 109: file c:/builds/moz2_slave/m-rel-w32-00000000000000000000/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+déc. 10, 2016 23:43:32.39 [Child 5476] WARNING: pipe error: 109: file c:/builds/moz2_slave/m-rel-w32-00000000000000000000/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+déc. 10, 2016 23:44:05.71 [Child 4844] WARNING: pipe error: 109: file c:/builds/moz2_slave/m-rel-w32-00000000000000000000/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+
+janv. 11, 2017 22:43:13.43 NEW SESSION
+janv. 11, 2017 22:43:13.43 [Child 3584] WARNING: pipe error: 109: file c:/builds/moz2_slave/m-rel-w32-00000000000000000000/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346

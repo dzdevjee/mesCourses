@@ -1,0 +1,17 @@
+127.0.0.1 - - [17/Jan/2017:14:26:46 +0100] "GET / HTTP/1.1" 404 1009
+0:0:0:0:0:0:0:1 - - [17/Jan/2017:14:30:04 +0100] "GET /mesCourses/ HTTP/1.1" 200 1990
+0:0:0:0:0:0:0:1 - - [17/Jan/2017:14:30:07 +0100] "GET /MesCoursesPrimefaces/faces/index.xhtml HTTP/1.1" 200 19248
+0:0:0:0:0:0:0:1 - - [17/Jan/2017:14:30:07 +0100] "GET /MesCoursesPrimefaces/faces/javax.faces.resource/jquery/jquery.js;jsessionid=2DE76DE32218340F5236444FA84BEB3B?ln=primefaces&v=6.0 HTTP/1.1" 200 107785
+0:0:0:0:0:0:0:1 - - [17/Jan/2017:14:30:07 +0100] "GET /MesCoursesPrimefaces/faces/javax.faces.resource/core.js;jsessionid=2DE76DE32218340F5236444FA84BEB3B?ln=primefaces&v=6.0 HTTP/1.1" 200 30554
+0:0:0:0:0:0:0:1 - - [17/Jan/2017:14:30:07 +0100] "GET /MesCoursesPrimefaces/faces/javax.faces.resource/components.css;jsessionid=2DE76DE32218340F5236444FA84BEB3B?ln=primefaces&v=6.0 HTTP/1.1" 200 75557
+0:0:0:0:0:0:0:1 - - [17/Jan/2017:14:30:07 +0100] "GET /MesCoursesPrimefaces/faces/javax.faces.resource/components.js;jsessionid=2DE76DE32218340F5236444FA84BEB3B?ln=primefaces&v=6.0 HTTP/1.1" 200 357791
+0:0:0:0:0:0:0:1 - - [17/Jan/2017:14:30:07 +0100] "GET /MesCoursesPrimefaces/faces/javax.faces.resource/jquery/jquery-plugins.js;jsessionid=2DE76DE32218340F5236444FA84BEB3B?ln=primefaces&v=6.0 HTTP/1.1" 200 245797
+0:0:0:0:0:0:0:1 - - [17/Jan/2017:14:30:07 +0100] "GET /MesCoursesPrimefaces/faces/javax.faces.resource/img/underConstruct.jpg;jsessionid=2DE76DE32218340F5236444FA84BEB3B HTTP/1.1" 200 225363
+0:0:0:0:0:0:0:1 - - [17/Jan/2017:14:30:07 +0100] "GET /MesCoursesPrimefaces/faces/javax.faces.resource/img/Icons/loader.gif;jsessionid=2DE76DE32218340F5236444FA84BEB3B HTTP/1.1" 200 41726
+0:0:0:0:0:0:0:1 - - [17/Jan/2017:14:30:07 +0100] "GET /favicon.ico HTTP/1.1" 404 1031
+0:0:0:0:0:0:0:1 - - [17/Jan/2017:14:31:19 +0100] "GET /MesCoursesPrimefaces/faces/pagesWeb/produit.xhtml;jsessionid=2DE76DE32218340F5236444FA84BEB3B HTTP/1.1" 200 175693
+0:0:0:0:0:0:0:1 - - [17/Jan/2017:14:31:22 +0100] "POST /MesCoursesPrimefaces/faces/pagesWeb/produit.xhtml HTTP/1.1" 200 2939
+0:0:0:0:0:0:0:1 - - [17/Jan/2017:14:32:35 +0100] "POST /MesCoursesPrimefaces/faces/pagesWeb/produit.xhtml HTTP/1.1" 200 28679
+0:0:0:0:0:0:0:1 - - [17/Jan/2017:14:33:11 +0100] "GET /mesCourses/;jsessionid=4AA8722741D15EC6989BB72489BE51E4 HTTP/1.1" 200 1462
+0:0:0:0:0:0:0:1 - - [17/Jan/2017:14:33:12 +0100] "GET /mesCourses/produit/index HTTP/1.1" 302 -
+0:0:0:0:0:0:0:1 - - [17/Jan/2017:14:33:12 +0100] "GET /mesCourses/connexion HTTP/1.1" 200 1088

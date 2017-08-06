@@ -1,0 +1,315 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+				xmlns:ui="http://java.sun.com/jsf/facelets"
+				xmlns:h="http://java.sun.com/jsf/html"
+				xmlns:f="http://java.sun.com/jsf/core"
+				xmlns:p="http://primefaces.org/ui"
+				template="/pagesWeb/template.xhtml">
+	<!-- ################################################################# Afficher tous les produits ################################################################### -->
+	<ui:define name="affichage">
+		<h:form id="formAfficherProduit" style="padding:20px;">
+			<p:dataGrid value="#{produitBean.listProduits}" var="p" layout="grid" columns="3" rows="18" paginator="false">
+				<p:panel footer="#{p.nomProd}" style="text-align:center">
+					<h:panelGrid columns="1" style="width:100%">
+						<p:graphicImage library="img" url="/resources/img/Produits/#{p.nomProd}.png" alt="Image non disponible"/>
+						<p:commandLink update=":formAfficherProduit:prodDetail" oncomplete="PF('prodDialog').show()" title="Plus">
+							<h:outputText styleClass="ui-icon ui-icon-plus" style="margin:0 auto;" />
+							<f:setPropertyActionListener value="#{p}" target="#{produitBean.prodSelect}" />
+						</p:commandLink>
+					</h:panelGrid>
+				</p:panel>
+			</p:dataGrid>
+			<p:dialog header="Produit Info" widgetVar="prodDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+				<p:outputPanel id="prodDetail" style="text-align:center;">
+					<p:panelGrid  columns="2" rendered="#{not empty produitBean.prodSelect}" columnClasses="label,value">
+						
+						<h:outputText value="ID" />
+						<h:outputText value="#{produitBean.prodSelect.idProd}" />
+
+						<h:outputText value="Produit" />
+						<h:outputText value="#{produitBean.prodSelect.nomProd}" />
+
+						<h:outputText value="Quantite" />
+						<h:outputText value="#{produitBean.prodSelect.qteProd}"/>
+						
+						<h:outputText value="Quantite Net" />
+						<h:outputText value="#{produitBean.prodSelect.qteNetProd}"/>
+						
+						<h:outputText value="Unite mesure" />
+						<h:outputText value="#{produitBean.prodSelect.uniteMesure}" />
+						
+						<h:outputText value="Prix" />
+						<h:outputText value="#{produitBean.prodSelect.prixProd}" />
+						
+						<h:outputText value="Quantité en stock" />
+						<h:outputText value="#{produitBean.prodSelect.qteStk}" />
+						
+						<h:outputText value="Commentaires" />
+						<h:outputText value="#{produitBean.prodSelect.comProd}" />
+						
+						<h:outputText value="Marque" />
+						<h:outputText value="#{produitBean.prodSelect.marque.nomMarq}" />
+						
+						<h:outputText value="Type" />
+						<h:outputText value="#{produitBean.prodSelect.typeProduit.nomTypeProd}"/>
+						
+						<h:outputText value="Nature" />
+						<h:outputText value="#{produitBean.prodSelect.nature.nomNat}"/>
+						
+						<h:outputText value="Categorie" />
+						<h:outputText value="#{produitBean.prodSelect.categorie.nomCat}"/>
+						
+						<h:outputText value="Utilisation" />
+						<h:outputText value="#{produitBean.prodSelect.utilisation.nomUse}"/>
+						
+						<h:outputText value="Enseigne" />
+						<h:outputText value="#{produitBean.prodSelect.enseigne.nomEns}"/>
+					</p:panelGrid>
+				</p:outputPanel>
+			</p:dialog>
+		</h:form>
+	</ui:define>
+	<!-- ###################################################################### Ajouter un produit ###################################################################### -->
+	<ui:define name="ajout">
+		<h:form id="formAjouterProduit" style="padding:20px;">
+			<p:growl id="msgGrowl" showDetail="true" sticky="true" />
+			<p:panel header="Ajouter un nouveau produit">
+				<p:outputLabel value="Nom produit" for="nomProd" />
+				<p:inputText id="nomProd" value="#{produitBean.nomProd}" required="true" />
+				<br/>
+				<p:outputLabel value="Quantite" for="qteProd" />
+				<p:inputText id="qteProd" value="#{produitBean.qteProd}" required="true" />
+				<br/>
+				<p:outputLabel value="Quantite net" for="qteNetProd" />
+				<p:inputText id="qteNetProd" value="#{produitBean.qteNetProd}" required="true" />
+				<br/>
+				<p:outputLabel value="Unite mesure" for="uniteMesure" />
+				<p:inputText id="uniteMesure" value="#{produitBean.uniteMesure}" required="true" />
+				<br/>
+				<p:outputLabel value="Prix produit" for="prixProd" />
+				<p:inputText id="prixProd" value="#{produitBean.prixProd}" required="true" />
+				<br/>
+				<p:outputLabel value="Quantite stock" for="qteStk" />
+				<p:inputText id="qteStk" value="#{produitBean.qteStk}" required="true" />
+				<br/>
+				<p:outputLabel value="Commentaire" for="comProd" />
+				<p:inputText id="comProd" value="#{produitBean.comProd}" required="true" />
+				<br/>
+				<p:outputLabel value="Marque" for="marq" />
+				<p:selectOneMenu value="#{produitBean.marq}" id="marq" required="true">
+					<f:selectItems value="#{produitBean.listMarq}" />				
+				</p:selectOneMenu>
+				<br/>
+				<p:outputLabel value="Type produit" for="typeProd" />
+				<p:selectOneMenu value="#{produitBean.typeProd}" id="typeProd" required="true">
+					<f:selectItems value="#{produitBean.listTypesProd}" />				
+				</p:selectOneMenu>
+				<br/>
+				<p:outputLabel value="Nature" for="nat" />
+				<p:selectOneMenu value="#{produitBean.nat}" id="nat" required="true">
+					<f:selectItems value="#{produitBean.listNat}" />				
+				</p:selectOneMenu>
+				<br/>
+				<p:outputLabel value="Categorie" for="cat" />
+				<p:selectOneMenu value="#{produitBean.cat}" id="cat" required="true">
+					<f:selectItems value="#{produitBean.listCat}" />				
+				</p:selectOneMenu>
+				<br/>
+				<p:outputLabel value="Utilisation" for="use" />
+				<p:selectOneMenu value="#{produitBean.use}" id="use" required="true">
+					<f:selectItems value="#{produitBean.listUse}" />				
+				</p:selectOneMenu>
+				<br/>
+				<p:outputLabel value="enseigne" for="ens" />
+				<p:selectOneMenu value="#{produitBean.ens}" id="ens" required="true">
+					<f:selectItems value="#{produitBean.listEns}" />				
+				</p:selectOneMenu>
+				<br/>
+				<p:commandButton value="Ajouter" actionListener="#{produitBean.ajouterProduit}" update="msgGrowl">
+					<p:confirm header="Confirmation" message="Etes-vous sur?" />
+				</p:commandButton>
+				<br/><br/>
+			</p:panel>
+			<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+				<p:commandButton value="Oui" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" update="msgGrowl" />
+				<p:commandButton value="Non" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" update="msgGrowl" />
+			</p:confirmDialog>
+		</h:form>
+	</ui:define>
+	<!-- ####################################################################### Gerer un produit ####################################################################### -->
+	<ui:define name="gestion">
+		<h:form id="formGererProduit" style="padding:20px;">
+			<p:growl id="msgGrowl" showDetail="true" sticky="true" />
+			<p:contextMenu for="dataTableGererProduit" widgetVar="pMenu">
+				<p:menuitem value="Modifier" update=":formGererProduit:dataTableGererProduit" actionListener="#{produitBean.modifierProduit}">
+					<p:confirm header="Confirmation" message="Etes-vous sur?" icon="ui-icon-alert" />
+				</p:menuitem>
+				<p:menuitem value="Supprimer" update=":formGererProduit:dataTableGererProduit" actionListener="#{produitBean.supprimerProduit}">
+					<p:confirm header="Confirmation" message="Etes-vous sur?" icon="ui-icon-alert" />
+				</p:menuitem>
+			</p:contextMenu>
+			<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+				<p:commandButton value="Oui" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" update=":formGererProduit:msgGrowl" />
+				<p:commandButton value="Non" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" update=":formGererProduit:msgGrowl" />
+			</p:confirmDialog>
+			<p:dataTable id="dataTableGererProduit" var="lp" value="#{produitBean.listProduits}" rowKey="#{lp.idProd}" selection="#{produitBean.prodSelect}"
+						 selectionMode="single" editable="true" resizableColumns="true" stickyHeader="true">	
+				<f:facet name="header">Gerer un produit</f:facet>
+				<br/>
+				<p:ajax event="sort" skipChildren="false" update=":formGererProduit:msgGrowl" />
+				<p:ajax event="rowEdit" listener="#{produitBean.onRowEdit}" update=":formGererProduit:msgGrowl" />
+				<p:column headerText="ID" sortBy="#{lp.idProd}"  style="width:30px">
+					<p:outputLabel value="#{lp.idProd}" />
+				</p:column>
+				<p:column headerText="Produit" sortBy="#{lp.nomProd}" style="width:100px">
+					<p:cellEditor>
+						<f:facet name="output">
+							<p:outputLabel value="#{lp.nomProd}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{lp.nomProd}" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+				<p:column headerText="Quantité" sortBy="#{lp.qteProd}" style="width:100px">
+					<p:cellEditor>
+						<f:facet name="output">
+							<p:outputLabel value="#{lp.qteProd}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{lp.qteProd}" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+				<p:column headerText="Quantité net" sortBy="#{lp.qteNetProd}" style="width:100px">
+					<p:cellEditor>
+						<f:facet name="output">
+							<p:outputLabel value="#{lp.qteNetProd}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{lp.qteNetProd}" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+				<p:column headerText="unite Mesure" sortBy="#{lp.uniteMesure}" style="width:100px">
+					<p:cellEditor>
+						<f:facet name="output">
+							<p:outputLabel value="#{lp.uniteMesure}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{lp.uniteMesure}" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+				<p:column id="prixProdMod" headerText="Prix produit" sortBy="#{lp.prixProd}">
+					<p:cellEditor>
+						<f:facet name="output">
+							<p:outputLabel value="#{lp.prixProd}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{lp.prixProd}" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+				<p:column id="qteStkMod" headerText="Quantite stock" sortBy="#{lp.qteStk}">
+					<p:cellEditor>
+						<f:facet name="output">
+							<p:outputLabel value="#{lp.qteStk}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{lp.qteStk}" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+				<p:column id="comProdMod" headerText="Commentaire" sortBy="#{lp.comProd}">
+					<p:cellEditor>
+						<f:facet name="output">
+							<p:outputLabel value="#{lp.comProd}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{lp.comProd}" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+				<p:column headerText="Marque" sortBy="#{lp.marque.nomMarq}">
+					<p:cellEditor>
+						<f:facet name="output">
+							<p:outputLabel value="#{lp.marque.nomMarq}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:selectOneMenu value="#{lp.marque.nomMarq}">
+								<f:selectItems value="#{produitBean.listMarq}" />
+							</p:selectOneMenu>
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+				<p:column headerText="Type produit" sortBy="#{lp.typeProduit.nomTypeProd}">
+					<p:cellEditor>
+						<f:facet name="output">
+							<p:outputLabel value="#{lp.typeProduit.nomTypeProd}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:selectOneMenu value="#{lp.typeProduit.nomTypeProd}">
+								<f:selectItems value="#{produitBean.listTypesProd}" />
+							</p:selectOneMenu>
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+				<p:column headerText="Nature" sortBy="#{lp.nature.nomNat}">
+					<p:cellEditor>
+						<f:facet name="output">
+							<p:outputLabel value="#{lp.nature.nomNat}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:selectOneMenu value="#{lp.nature.nomNat}">
+								<f:selectItems value="#{produitBean.listNat}" />
+							</p:selectOneMenu>
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+				<p:column headerText="Categorie" sortBy="#{lp.categorie.nomCat}">
+					<p:cellEditor>
+						<f:facet name="output">
+							<p:outputLabel value="#{lp.categorie.nomCat}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:selectOneMenu value="#{lp.categorie.nomCat}">
+								<f:selectItems value="#{produitBean.listCat}" />
+							</p:selectOneMenu>
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+				<p:column headerText="Utilisation" sortBy="#{lp.utilisation.nomUse}">
+					<p:cellEditor>
+						<f:facet name="output">
+							<p:outputLabel value="#{lp.utilisation.nomUse}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:selectOneMenu value="#{lp.utilisation.nomUse}">
+								<f:selectItems value="#{produitBean.listUse}" />
+							</p:selectOneMenu>
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+				<p:column headerText="Enseigne" sortBy="#{lp.enseigne.nomEns}">
+					<p:cellEditor>
+						<f:facet name="output">
+							<p:outputLabel value="#{lp.enseigne.nomEns}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:selectOneMenu value="#{lp.enseigne.nomEns}">
+								<f:selectItems value="#{produitBean.listEns}" />
+							</p:selectOneMenu>
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+				<p:column style="width:20px">
+					<p:rowEditor />
+				</p:column>
+			</p:dataTable>
+			<br/>
+			<p:commandButton value="Reset" immediate="true" ajax="false" update=":formGererProduit:msgGrowl">
+				<p:resetInput target="dataTableGererProduit" />
+			</p:commandButton>
+		</h:form>
+	</ui:define>
+</ui:composition>

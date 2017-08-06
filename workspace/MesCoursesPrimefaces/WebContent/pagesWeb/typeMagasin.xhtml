@@ -1,0 +1,80 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+				xmlns:ui="http://java.sun.com/jsf/facelets"
+				xmlns:h="http://java.sun.com/jsf/html"
+				xmlns:f="http://java.sun.com/jsf/core"
+				xmlns:p="http://primefaces.org/ui"
+				template="/pagesWeb/template.xhtml">
+	<!-- ############################################################### Afficher toutes les types magasin ############################################################### -->
+	<ui:define name="affichage">
+		<h:form id="formAfficherTypeMagasin" style="padding:20px;">
+			<p:dataGrid value="#{typeMagasinBean.listTypesMagasin}" var="tm" layout="grid" columns="3" rows="18" paginator="false">
+				<p:panel footer ="#{tm.nomTypeMag}" style="text-align:center;">
+					<h:panelGrid columns="1" style="width:100%">
+						<p:graphicImage library="img" url="/resources/img/Types magasin/#{tm.nomTypeMag}.png" alt="Image non disponible" />
+					</h:panelGrid>
+				</p:panel>
+			</p:dataGrid>
+		</h:form>
+	</ui:define>
+	<!-- #################################################################### Ajouter un type magasin #################################################################### -->
+	<ui:define name="ajout">
+		<h:form id="formAjouterTypeMagasin" style="padding:20px;">
+			<p:growl id="msgGrowl" showDetail="true" sticky="true" />
+			<p:panel header="Ajouter un nouveau type magasin">
+				<p:outputLabel value="Type magasin" for="nomTypeMag" />
+				<p:inputText id="nomTypeMag" value="#{typeMagasinBean.nomTypeMag}" required="true" />
+				<p:spacer width="50" />
+				<p:commandButton value="Ajouter" actionListener="#{typeMagasinBean.ajouterTypeMagasin}" update="msgGrowl">
+					<p:confirm header="Confirmation" message="Etes-vous sur?" />
+				</p:commandButton>
+				<br/><br/>
+			</p:panel>
+			<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+				<p:commandButton value="Oui" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" update="msgGrowl" />
+				<p:commandButton value="Non" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" update="msgGrowl" />
+			</p:confirmDialog>
+		</h:form>	
+	</ui:define>
+	<!-- ##################################################################### Gerer un type magasin ##################################################################### -->
+	<ui:define name="gestion">
+		<h:form id="formGererTypeMagasin" style="padding:20px;">
+			<p:growl id="msgGrowl" showDetail="true" sticky="true" />
+			<p:contextMenu for="dataTableGererTypeMagasin" widgetVar="tmMenu">
+				<p:menuitem value="Modifier" update=":formGererTypeMagasin:dataTableGererTypeMagasin" actionListener="#{typeMagasinBean.modifierTypeMagasin}">
+					<p:confirm header="Confirmation" message="Etes-vous sur?" icon="ui-icon-alert" />
+				</p:menuitem>
+				<p:menuitem value="Supprimer" update=":formGererTypeMagasin:dataTableGererTypeMagasin" actionListener="#{typeMagasinBean.supprimerTypeMagasin}">
+					<p:confirm header="Confirmation" message="Etes-vous sur?" icon="ui-icon-alert" />
+				</p:menuitem>
+			</p:contextMenu>
+			<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+				<p:commandButton value="Oui" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" update=":formGererTypeMagasin:msgGrowl" />
+				<p:commandButton value="Non" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" update=":formGererTypeMagasin:msgGrowl" />
+			</p:confirmDialog>
+			<p:dataTable id="dataTableGererTypeMagasin" var="ltm" value="#{typeMagasinBean.listTypesMagasin}" rowKey="#{ltm.idTypeMag}" selection="#{typeMagasinBean.typeMagSelect}"
+						 selectionMode="single" editable="true" editMode="cell" widgetVar="cellTypeMagList" resizableColumns="true" stickyHeader="true" style="width:50%;">	
+				<f:facet name="header">Gerer un type magasin</f:facet>
+				<br/>
+				<p:ajax event="sort" skipChildren="false" update=":formGererTypeMagasin:msgGrowl" />
+				<p:ajax event="cellEdit" listener="#{typeMagasinBean.editerCellule}" update=":formGererTypeMagasin:msgGrowl" />
+				<p:column headerText="ID" sortBy="#{ltm.idTypeMag}" style="width:30px">
+					<p:outputLabel value="#{ltm.idTypeMag}" />
+				</p:column>
+				<p:column headerText="Type magasin" sortBy="#{ltm.nomTypeMag}">
+					<p:cellEditor>
+						<f:facet name="output">
+							<p:outputLabel value="#{ltm.nomTypeMag}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{ltm.nomTypeMag}" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+			</p:dataTable>
+			<br/>
+			<p:commandButton value="Reset" immediate="true" ajax="false" update=":formGererTypeMagasin:msgGrowl">
+				<p:resetInput target="dataTableGererTypeMagasin" />
+			</p:commandButton>
+		</h:form>
+	</ui:define>
+</ui:composition>

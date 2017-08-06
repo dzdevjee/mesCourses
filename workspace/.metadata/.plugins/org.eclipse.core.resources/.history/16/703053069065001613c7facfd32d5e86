@@ -1,0 +1,205 @@
+package com.lamine.presentation;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
+import javax.faces.bean.*;
+import javax.faces.context.FacesContext;
+import javax.faces.event.ActionEvent;
+import javax.faces.model.SelectItem;
+
+import org.primefaces.event.CellEditEvent;
+import org.primefaces.event.RowEditEvent;
+
+import com.lamine.dao.entite.Categorie;
+import com.lamine.metier.impl.CategorieMetierImpl;
+import com.lamine.metier.interfaces.CategorieMetier;
+
+@ManagedBean(name="categorieBean")
+@RequestScoped
+public class CategorieBean {
+	//Attributs
+	private CategorieMetier categorie;
+	private Categorie catSelect;
+
+	private String nomCat;
+	private String nomCatSelected;
+
+	private List<Categorie> listCategories;
+	private List<SelectItem> listCategoriesSelect;
+
+	private String succesMessage;
+
+	private Object ancienneValeur;
+	private Object nouvelleValeur;
+	
+	//Constructeur
+	public CategorieBean() {
+	}
+	
+	@PostConstruct
+	public void initBean() {
+		//Initialisation des objets
+		categorie = new CategorieMetierImpl();
+		
+		//Initialisation des attributs
+		nomCat = "";
+		
+		//Afficher la liste des categories
+		listCategories = new ArrayList<>();
+		listCategories = categorie.toutAfficher();
+		
+		//Afficher la liste des categories(SelectItem)
+		List<Categorie> liste = categorie.toutAfficher();
+		listCategoriesSelect = new ArrayList<>();
+		for (Categorie ct:liste) {
+			listCategoriesSelect.add(new SelectItem(ct.getIdCat(), ct.getNomCat()));
+		}
+	}
+	
+	//Getters
+	public CategorieMetier getCategorie() {
+		return categorie;
+	}
+	
+	public Categorie getCatSelect() {
+		return catSelect;
+	}
+
+	public String getNomCat() {
+		return nomCat;
+	}
+
+	
+	public String getNomCatSelected() {
+		return nomCatSelected;
+	}
+
+	public List<Categorie> getListCategories() {
+		return listCategories;
+	}
+
+	
+	public List<SelectItem> getListCategoriesSelect() {
+		return listCategoriesSelect;
+	}
+
+	public String getSuccesMessage() {
+		return succesMessage;
+	}
+	
+	public Object getAncienneValeur() {
+		return ancienneValeur;
+	}
+
+	public Object getNouvelleValeur() {
+		return nouvelleValeur;
+	}
+
+	//Setters
+	public void setCategorie(CategorieMetier categorie) {
+		this.categorie = categorie;
+	}
+
+	public void setCatSelect(Categorie catSelect) {
+		this.catSelect = catSelect;
+	}
+	
+	public void setNomCat(String nomCat) {
+		this.nomCat = nomCat;
+	}
+	
+	public void setNomCatSelected(String nomCatSelected) {
+		this.nomCatSelected = nomCatSelected;
+	}
+	
+	public void setListCategories(List<Categorie> listCategories) {
+		this.listCategories = listCategories;
+	}
+	
+	public void setListCategoriesSelect(List<SelectItem> listCategoriesSelect) {
+		this.listCategoriesSelect = listCategoriesSelect;
+	}
+	
+	public void setSuccesMessage(String succesMessage) {
+		this.succesMessage = succesMessage;
+	}
+
+	public void setAncienneValeur(Object ancienneValeur) {
+		this.ancienneValeur = ancienneValeur;
+	}
+
+	public void setNouvelleValeur(Object nouvelleValeur) {
+		this.nouvelleValeur = nouvelleValeur;
+	}
+	
+	//Ajouter une categorie
+	public void ajouterCategorie(ActionEvent action) {
+		succesMessage = "";
+		
+		if (nomCat != null) {
+			if ("".equalsIgnoreCase(nomCat)) {
+				FacesContext.getCurrentInstance().addMessage("nomCat", new FacesMessage("Champs obligatoire"));
+			} else {
+				Categorie c = new Categorie();
+				c.setNomCat(nomCat);
+				categorie.creer(c);
+				
+				succesMessage = "Operation reussie";
+				
+				nomCat = "";
+				nomCatSelected = "";
+			}
+		} else {
+			succesMessage = "Echec de l'operation";
+			FacesContext.getCurrentInstance().addMessage("formAjouterCategorie", new FacesMessage(succesMessage));;
+		}
+	}
+	
+	//Modifier une categorie
+	public void modifierCategorie() {
+		if (catSelect != null) {
+			
+				System.out.println("action listner reussi");
+				System.out.println("ancienne valeur:" + catSelect.getNomCat());
+		
+				FacesContext fc = FacesContext.getCurrentInstance();		
+				Map<Object, Object> param = fc.getAttributes();
+				
+				Object id = param.get("idCatSel");
+				System.out.println("ancienne valeur:" + id);
+				id = param.get("idCatSelect");
+				System.out.println("ancienne valeur:" + id);
+			
+		} else {
+			succesMessage = "Echec de l'operation";
+			FacesContext.getCurrentInstance().addMessage("formAjouterCategorie", new FacesMessage(succesMessage));;
+		}
+  	}
+
+	public void editerCellule(CellEditEvent event) {
+		
+	}
+	
+	//Supprimer une categorie
+	public void supprimerCategorie() {
+		if (catSelect != null) {
+			if ("".equalsIgnoreCase(catSelect.getNomCat())) {
+				FacesContext.getCurrentInstance().addMessage("nomCat", new FacesMessage("Vous devez selectionner un element a supprimer"));
+			} else {
+				categorie.supprimer(catSelect.getIdCat());
+				
+				succesMessage = "Operation reussie";
+				
+				nomCat = "";
+				nomCatSelected = "";
+			}
+		} else {
+			succesMessage = "Echec de l'operation";
+			FacesContext.getCurrentInstance().addMessage("formAjouterCategorie", new FacesMessage(succesMessage));;
+		}
+  	}
+}

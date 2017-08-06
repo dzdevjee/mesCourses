@@ -1,0 +1,80 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+				xmlns:ui="http://java.sun.com/jsf/facelets"
+				xmlns:h="http://java.sun.com/jsf/html"
+				xmlns:f="http://java.sun.com/jsf/core"
+				xmlns:p="http://primefaces.org/ui"
+				template="/pagesWeb/template.xhtml">
+	<!-- ############################################################### Afficher toutes les enseignes ################################################################## -->
+	<ui:define name="affichage">
+		<h:form id="formAfficherEnseigne" style="padding:20px;">
+			<p:dataGrid value="#{enseigneBean.listEnseignes}" var="e" layout="grid" columns="3" paginator="false">
+				<p:panel footer="#{e.nomEns}" style="text-align:center">
+					<h:panelGrid columns="1" style="width:100%">
+						<p:graphicImage library="img" url="/resources/img/Enseignes/#{e.nomEns}.png" alt="Image non disponible"/>
+					</h:panelGrid>
+				</p:panel>
+			</p:dataGrid>
+		</h:form>
+	</ui:define>
+	<!-- ##################################################################### Ajouter une enseigne ##################################################################### -->
+	<ui:define name="ajout">
+		<h:form id="formAjouterEnseigne" style="padding:20px;">
+			<p:growl id="msgGrowl" showDetail="true" sticky="true" />
+			<p:panel header="Ajouter une nouvelle enseigne">
+				<p:outputLabel value="Nom enseigne" for="nomEns" />
+				<p:inputText id="nomEns" value="#{enseigneBean.nomEns}" required="true" />
+				<br/>
+				<p:commandButton value="Ajouter" actionListener="#{enseigneBean.ajouterEnseigne}" update="msgGrowl">
+					<p:confirm header="Confirmation" message="Etes-vous sur?" />
+				</p:commandButton>
+				<br/><br/>
+			</p:panel>
+			<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+				<p:commandButton value="Oui" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" update="msgGrowl" />
+				<p:commandButton value="Non" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" update="msgGrowl" />
+			</p:confirmDialog>
+		</h:form>	
+	</ui:define>
+	<!-- ###################################################################### Gerer une enseigne ###################################################################### -->
+	<ui:define name="gestion">
+		<h:form id="formGererEnseigne" style="padding:20px;">
+			<p:growl id="msgGrowl" showDetail="true" sticky="true" />
+			<p:contextMenu for="dataTableGererEnseigne" widgetVar="eMenu">
+				<p:menuitem value="Modifier" update=":formGererEnseigne:dataTableGererEnseigne" actionListener="#{enseigneBean.modifierEnseigne}">
+					<p:confirm header="Confirmation" message="Etes-vous sur?" icon="ui-icon-alert" />
+				</p:menuitem>
+				<p:menuitem value="Supprimer" update=":formGererEnseigne:dataTableGererEnseigne" actionListener="#{enseigneBean.supprimerEnseigne}">
+					<p:confirm header="Confirmation" message="Etes-vous sur?" icon="ui-icon-alert" />
+				</p:menuitem>
+			</p:contextMenu>
+			<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+				<p:commandButton value="Oui" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" update=":formGererEnseigne:msgGrowl" />
+				<p:commandButton value="Non" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" update=":formGererEnseigne:msgGrowl" />
+			</p:confirmDialog>
+			<p:dataTable id="dataTableGererEnseigne" var="lE" value="#{enseigneBean.listEnseignes}" rowKey="#{lE.idEns}" selection="#{enseigneBean.ensSelect}"
+						 selectionMode="single" editable="true" editMode="cell" widgetVar="cellEnsList" resizableColumns="true" stickyHeader="true">	
+				<f:facet name="header">Gerer une enseigne</f:facet>
+				<br/>
+				<p:ajax event="sort" skipChildren="false" update=":formGererEnseigne:msgGrowl" />
+				<p:ajax event="cellEdit" listener="#{enseigneBean.editerCellule}" update=":formGererEnseigne:msgGrowl" />
+				<p:column headerText="ID" sortBy="#{lE.idEns}" style="width:30px">
+					<p:outputLabel value="#{lE.idEns}" />
+				</p:column>
+				<p:column headerText="Nom enseigne" sortBy="#{lE.nomEns}" style="width:200px">
+					<p:cellEditor>
+						<f:facet name="output">
+							<p:outputLabel value="#{lE.nomEns}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{lE.nomEns}" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+			</p:dataTable>
+			<br/>
+			<p:commandButton value="Reset" immediate="true" ajax="false" update=":formGererEnseigne:msgGrowl">
+				<p:resetInput target="dataTableGererEnseigne" />
+			</p:commandButton>
+		</h:form>
+	</ui:define>
+</ui:composition>

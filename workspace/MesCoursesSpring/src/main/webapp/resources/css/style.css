@@ -1,0 +1,83 @@
+div.cadre {
+	border: 1px dotted gray;
+	border-radius: 10px;
+	padding: 10px;
+	margin: 10px;
+}
+
+.cadre th {
+	border: 1px dotted gray;
+	background: pink;
+	padding: 5px;
+}
+
+.cadre td {
+	border: 1px dotted gray;
+	background: white;
+	padding: 5px;
+}
+
+.erreurs {
+	color: red;
+	display: none;
+}
+
+.menu td {
+	height: 50px;
+	width: 140px;
+	border: 1px solid gray;
+	border-radius: 10px;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	background-color: #4682b4;
+}
+
+.menu a {
+	display: block;
+	text-align: center;
+	font: small-caps medium monospace small-caption;
+	text-decoration: none;
+	color: white;
+	background-color: #4682b4
+}
+
+.menu a:HOVER {
+	font-weight: bold;
+	font-size: 20px;
+}
+
+.menu a:ACTIVE {
+	font-weight: bold;
+	font-size: 20px;
+	color: orange;
+}
+
+.loginCadre {
+	display: block;
+	margin-top: 200px;
+	margin-left: 500px;
+	border: 1px solid gray;
+	border-radius: 10px;
+	height: 100px;
+	width: 220px;
+	padding: 25px;
+	background-color: #4682b4;
+	color: white;
+}
+
+.mainHome {
+	display: block;
+	margin-left: 20px;
+}
+
+#imgHome {
+	max-height: 90%;
+	width: auto;
+}
+
+.mainLogout {
+	font: bold large cursive small-caption;
+	margin-top: 200px;
+	margin-left: 500px;
+}

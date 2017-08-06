@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:h="http://xmlns.jcp.org/jsf/html"
+	  xmlns:f="http://xmlns.jcp.org/jsf/core"
+	  xmlns:p="http://primefaces.org/ui">
+	<h:head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+		<title>Ajouter un nouveau critere de choix</title>
+	</h:head>
+	<h:body>
+	<!-- ############################################################################ Menu ############################################################################## -->
+		<p:menubar>
+			<p:menuitem value="Index" url="http://localhost:8080/MesCoursesWeb/faces/index.xhtml" />
+			
+			<p:submenu id="produit" label="Produit">
+				<p:menuitem value="Afficher la liste des produits" url="http://localhost:8080/MesCoursesWeb/faces/pagesWeb/produit.xhtml" ajax="false" disabled="true" />
+				<p:separator />
+				<p:menuitem value="Ajouter un produit" url="http://localhost:8080/MesCoursesWeb/faces/pagesWeb/produit.xhtml" ajax="false" disabled="true" />
+				<p:menuitem value="Rechercher un produit" url="http://localhost:8080/MesCoursesWeb/faces/pagesWeb/produit.xhtml" ajax="false" disabled="true" />
+				<p:menuitem value="Modifier un produit" url="http://localhost:8080/MesCoursesWeb/faces/pagesWeb/produit.xhtml" ajax="false" disabled="true" />
+				<p:menuitem value="Supprimer un produit" url="http://localhost:8080/MesCoursesWeb/faces/pagesWeb/produit.xhtml" ajax="false" disabled="true" />
+			</p:submenu>
+
+			<p:submenu id="magasin" label="Magasin">
+				<p:menuitem value="Afficher la liste des magasins" url="http://localhost:8080/MesCoursesWeb/faces/pagesWeb/magasin.xhtml" ajax="false" />
+				<p:separator />
+				<p:menuitem value="Ajouter un magasin" url="http://localhost:8080/MesCoursesWeb/faces/pagesWeb/magasin.xhtml" ajax="false" />
+				<p:menuitem value="Rechercher un magasin" url="http://localhost:8080/MesCoursesWeb/faces/pagesWeb/magasin.xhtml" ajax="false" />
+				<p:menuitem value="Modifier un magasin" url="http://localhost:8080/MesCoursesWeb/faces/pagesWeb/magasin.xhtml" ajax="false" />
+				<p:menuitem value="Supprimer un magasin" url="http://localhost:8080/MesCoursesWeb/faces/pagesWeb/magasin.xhtml" ajax="false" disabled="true" />
+			</p:submenu>
+
+			<p:submenu id="typeProduit" label="Type produit">
+				<p:menuitem value="Afficher la liste des types produit" url="http://localhost:8080/MesCoursesWeb/faces/pagesWeb/typeProduit.xhtml" ajax="false" />
+				<p:separator />
+				<p:menuitem value="Ajouter un type produit" url="http://localhost:8080/MesCoursesWeb/faces/pagesWeb/typeProduit.xhtml" ajax="false" />
+				<p:menuitem value="Rechercher un type produit" url="http://localhost:8080/MesCoursesWeb/faces/pagesWeb/typeProduit.xhtml" ajax="false" />
+				<p:menuitem value="Modifier un type produit" url="http://localhost:8080/MesCoursesWeb/faces/pagesWeb/typeProduit.xhtml" ajax="false" />
+				<p:menuitem value="Supprimer un type produit" url="http://localhost:8080/MesCoursesWeb/faces/pagesWeb/typeProduit.xhtml" ajax="false" disabled="true" />
+			</p:submenu>
+			
+			<p:submenu id="typeMagasin" label="Type magasin">
+				<p:menuitem value="Afficher la liste des types magasin" url="http://localhost:8080/MesCoursesWeb/faces/pagesWeb/typeMagasin.xhtml" ajax="false" />
+				<p:separator />
+				<p:menuitem value="Ajouter un type magasin" url="http://localhost:8080/MesCoursesWeb/faces/pagesWeb/typeMagasin.xhtml" ajax="false" />
+				<p:menuitem value="Rechercher un type magasin" url="http://localhost:8080/MesCoursesWeb/faces/pagesWeb/typeMagasin.xhtml" ajax="false" />
+				<p:menuitem value="Modifier un type magasin" url="http://localhost:8080/MesCoursesWeb/faces/pagesWeb/typeMagasin.xhtml" ajax="false" />
+				<p:menuitem value="Supprimer un type magasin" url="http://localhost:8080/MesCoursesWeb/faces/pagesWeb/typeMagasin.xhtml" ajax="false" disabled="true" />
+			</p:submenu>
+			
+			<p:submenu id="utilisation" label="Utilisation">
+				<p:menuitem value="Afficher la liste des utilisations" url="http://localhost:8080/MesCoursesWeb/faces/pagesWeb/utilisation.xhtml" ajax="false" disabled="true" />
+				<p:separator />
+				<p:menuitem value="Ajouter une utilisation" url="http://localhost:8080/MesCoursesWeb/faces/pagesWeb/utilisation.xhtml" ajax="false" disabled="true" />
+				<p:menuitem value="Rechercher une utilisation" url="http://localhost:8080/MesCoursesWeb/faces/pagesWeb/utilisation.xhtml" ajax="false" disabled="true" />
+				<p:menuitem value="Modifier une utilisation" url="http://localhost:8080/MesCoursesWeb/faces/pagesWeb/utilisation.xhtml" ajax="false" disabled="true" />
+				<p:menuitem value="Supprimer une utilisation" url="http://localhost:8080/MesCoursesWeb/faces/pagesWeb/utilisation.xhtml" ajax="false" disabled="true" />
+			</p:submenu>
+			
+			<p:submenu id="categorie" label="Categorie">
+				<p:menuitem value="Afficher la liste des categories" url="http://localhost:8080/MesCoursesWeb/faces/pagesWeb/categorie.xhtml" ajax="false" />
+				<p:separator />
+				<p:menuitem value="Ajouter une categorie" url="http://localhost:8080/MesCoursesWeb/faces/pagesWeb/categorie.xhtml" ajax="false" />
+				<p:menuitem value="Rechercher une categorie" url="http://localhost:8080/MesCoursesWeb/faces/pagesWeb/categorie.xhtml" ajax="false" />
+				<p:menuitem value="Modifier une categorie" url="http://localhost:8080/MesCoursesWeb/faces/pagesWeb/categorie.xhtml" ajax="false" />
+				<p:menuitem value="Supprimer une categorie" url="http://localhost:8080/MesCoursesWeb/faces/pagesWeb/categorie.xhtml" ajax="false" disabled="true" />
+			</p:submenu>
+			
+			<p:submenu id="nature" label="Nature">
+				<p:menuitem value="Afficher la liste des natures" url="http://localhost:8080/MesCoursesWeb/faces/pagesWeb/nature.xhtml" ajax="false" />
+				<p:separator />
+				<p:menuitem value="Ajouter un nature" url="http://localhost:8080/MesCoursesWeb/faces/pagesWeb/nature.xhtml" ajax="false" />
+				<p:menuitem value="Rechercher une nature" url="http://localhost:8080/MesCoursesWeb/faces/pagesWeb/nature.xhtml" ajax="false" />
+				<p:menuitem value="Modifier une nature" url="http://localhost:8080/MesCoursesWeb/faces/pagesWeb/nature.xhtml" ajax="false" />
+				<p:menuitem value="Supprimer une nature" url="http://localhost:8080/MesCoursesWeb/faces/pagesWeb/nature.xhtml" ajax="false" disabled="true" />
+			</p:submenu>
+			
+			<p:submenu id="marque" label="Marque">
+				<p:menuitem value="Afficher la liste des marques" url="http://localhost:8080/MesCoursesWeb/faces/pagesWeb/marque.xhtml" ajax="false" />
+				<p:separator />
+				<p:menuitem value="Ajouter un marque" url="http://localhost:8080/MesCoursesWeb/faces/pagesWeb/marque.xhtml" ajax="false" />
+				<p:menuitem value="Rechercher une marque" url="http://localhost:8080/MesCoursesWeb/faces/pagesWeb/marque.xhtml" ajax="false" />
+				<p:menuitem value="Modifier un marque" url="http://localhost:8080/MesCoursesWeb/faces/pagesWeb/marque.xhtml" ajax="false" />
+				<p:menuitem value="Supprimer une marque" url="http://localhost:8080/MesCoursesWeb/faces/pagesWeb/marque.xhtml" ajax="false" disabled="true" />
+			</p:submenu>
+			
+			<p:submenu id="choix" label="Choix">
+				<p:menuitem value="Afficher la liste des choix" url="http://localhost:8080/MesCoursesWeb/faces/pagesWeb/choix.xhtml" ajax="false" disabled="true" />
+				<p:separator />
+				<p:menuitem value="Ajouter un choix" url="http://localhost:8080/MesCoursesWeb/faces/pagesWeb/choix.xhtml" ajax="false" />
+				<p:menuitem value="Rechercher un choix" url="http://localhost:8080/MesCoursesWeb/faces/pagesWeb/choix.xhtml" ajax="false" />
+				<p:menuitem value="Modifier un choix" url="http://localhost:8080/MesCoursesWeb/faces/pagesWeb/choix.xhtml" ajax="false" />
+				<p:menuitem value="Supprimer un choix" url="http://localhost:8080/MesCoursesWeb/faces/pagesWeb/choix.xhtml" ajax="false" />
+			</p:submenu>
+		</p:menubar>
+		<!-- ##################################################################### Ajouter un Choix #################################################################### -->
+		<h:form id="formAjouterChoix">
+			<p:panel header="Ajouter un nouveau critere de choix">
+				<h:panelGrid columns="2" cellpadding="5">
+					<h:outputLabel value="Nom choix: " for="nomChoix"></h:outputLabel>
+					<h:inputText value="#{choixBean.nomChoix}" id="nomChoix" for="nomChoix" required="true" requiredMessage="Vous devez indiquez le choix"></h:inputText>
+					
+					<p:outputLabel value="Produit: " for="nomProd" />
+					<p:selectOneMenu id="nomProd" value="#{choixBean.nomProd}" style="width:150px" required="true" requiredMessage="Vous devez indiquez le produit" >
+						<f:selectItem itemLabel="Selectionner un produit" itemValue="" noSelectionOption="true" />
+						<f:selectItems value="#{choixBean.listProd}" />
+					</p:selectOneMenu>
+					
+					<p:outputLabel value="Magasin: " for="nomMag" />
+					<p:selectOneMenu id="nomMag" value="#{choixBean.nomMag}" style="width:150px" required="true" requiredMessage="Vous devez indiquez le magasin" >
+						<f:selectItem itemLabel="Selectionner un magasin" itemValue="" noSelectionOption="true" />
+						<f:selectItems value="#{choixBean.listMag}" />
+					</p:selectOneMenu>
+				</h:panelGrid>
+				
+				<p:separator />
+				
+				<p:commandButton value="Ajouter" actionListener="#{choixBean.ajouterChoix}" icon="ui-icon-check" />
+			</p:panel>
+			
+			<h:messages style="color: red; padding: 10px; width: 25%;"></h:messages>
+		</h:form>
+	</h:body>
+</html>

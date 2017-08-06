@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Delete resource &apos;MesCoursesWeb/WebContent/WEB-INF/lib/all-themes-1.0.10.jar&apos;" deleteContents="false" description="Delete resource &apos;MesCoursesWeb/WebContent/WEB-INF/lib/all-themes-1.0.10.jar&apos;" element1="/MesCoursesWeb/WebContent/WEB-INF/lib/all-themes-1.0.10.jar" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1471262863741"/>
+</session>
